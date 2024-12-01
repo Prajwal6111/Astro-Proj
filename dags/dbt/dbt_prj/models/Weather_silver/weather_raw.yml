@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: WEATHER_RAW
+    database: PRAJWAL_ELT
+    schema: WEATHER_API
+    tables:
+      - name: weather_raw_data

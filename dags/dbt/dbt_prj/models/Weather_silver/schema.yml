@@ -1,0 +1,6 @@
+
+version: 2
+
+models:
+  - name: weather_api
+    description: "A starter dbt model"
