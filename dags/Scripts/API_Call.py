@@ -2,8 +2,13 @@ import requests
 import snowflake.connector
 import json
 import uuid
+from dotenv import load_dotenv
+import os
 
-def API_Call(lat='14.447562', lon='75.904795', api_key='4057e6afe2e0c6f80ce15f3772ac4e19'):
+# Load .env variables
+load_dotenv()
+
+def API_Call(lat='14.447562', lon='75.904795', api_key=os.getenv("API_KEY")):
     # Define the API endpoint and the parameters
     url = "https://api.openweathermap.org/data/2.5/weather"
     params = {
@@ -29,13 +34,13 @@ def API_Call(lat='14.447562', lon='75.904795', api_key='4057e6afe2e0c6f80ce15f37
 def store_to_snowflake(weather_data):
     # Connect to Snowflake
     conn = snowflake.connector.connect(
-        user='PRAJWAL',
-        password='Internship@123',
-account='ng48387.ap-southeast-1',
-        warehouse='COMPUTE_WH',
-        database='PRAJWAL_ELT',
-        schema='WEATHER_API',
-            role='ACCOUNTADMIN'
+        user=os.getenv("user_name"),
+        password=os.getenv("pass"),
+account=os.getenv("account_name"),
+        warehouse=os.getenv("warehouse_name"),
+        database=os.getenv("database_name"),
+        schema=os.getenv("schema_name"),
+            role=os.getenv("role_name")
     )
 
     # Create a cursor
